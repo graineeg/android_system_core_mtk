@@ -78,6 +78,8 @@ LOCAL_SRC_FILES:= \
 	Looper.cpp \
 	Trace.cpp
 
+LOCAL_SRC_FILES_32 += MediatekHacks.cpp
+
 ifeq ($(TARGET_ARCH),mips)
 LOCAL_CFLAGS += -DALIGN_DOUBLE
 endif
