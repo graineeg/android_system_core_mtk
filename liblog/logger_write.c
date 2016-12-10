@@ -394,6 +394,60 @@ LIBLOG_ABI_PUBLIC int __android_log_buf_write(int bufID, int prio,
     if (!tag)
         tag = "";
 
+     // Prevent MTK audio and silead fingerprint libs from spamming in the log
+     if (!strcmp(tag, "AudioMTKFilterManager") ||
+         !strcmp(tag, "AudioALSAStreamOut") ||
+         !strcmp(tag, "Timed out waiting for vsync...") ||
+         !strcmp(tag, "AudioMTKStreamOut") ||
+         !strcmp(tag, "AudioVPWStreamIn") ||
+         !strcmp(tag, "AudioDigitalControl") ||
+         !strcmp(tag, "AudioLoopbackController") ||
+         !strcmp(tag, "AudioMTKVolumeController") ||
+         !strcmp(tag, "AudioDigitalControl") ||
+         !strcmp(tag, "AudioAnalogControl") ||
+         !strcmp(tag, "AudioAfeReg") ||
+         !strcmp(tag, "AudioAnalogReg") ||
+         !strcmp(tag, "AudioPlatformDevice") ||
+         !strcmp(tag, "AudioMachineDevice") ||
+         !strcmp(tag, "MtkAudioLoud") ||
+         !strcmp(tag, "LoopbackManager") ||
+         !strcmp(tag, "AudioInterConnection") ||
+         !strcmp(tag, "SLCODE") ||
+	       (strstr(tag, "ccci") != NULL) ||
+	       (strstr(tag, "Eis") != NULL) ||
+	       (strstr(tag, "aaa") != NULL) ||
+	       (strstr(tag, "af_") != NULL) ||
+	       (strstr(tag, "ae_") != NULL) ||
+	       (strstr(tag, "IMem") != NULL) ||
+	       (strstr(tag, "iio") != NULL) ||
+	       (strstr(tag, "Mdp") != NULL) ||
+	       (strstr(tag, "isp_tuning") != NULL) ||
+	       (strstr(tag, "Ae") != NULL) ||
+      	 (strstr(tag, "flash") != NULL) ||
+	       (strstr(tag, "flicker_hal") != NULL) ||
+      	 (strstr(tag, "NVRAM") != NULL) ||
+	       (strstr(tag, "Flicker") != NULL) ||
+	       (strstr(tag, "TuningMgr") != NULL) ||
+	       (strstr(tag, "MDP") != NULL) ||
+	       (strstr(tag, "Iop") != NULL) ||
+	       (strstr(tag, "Isp") != NULL) ||
+	       (strstr(tag, "VDO") != NULL) ||
+	       (strstr(tag, "MtkOmx") != NULL) ||
+	       (strstr(tag, "MtkCam") != NULL) ||
+         (strstr(tag, "AfAlgo") != NULL) ||
+         (strstr(tag, "isp_mgr_") != NULL) ||
+         (strstr(tag, "SeninfDrvImp") != NULL) ||
+         (strstr(tag, "NormalPipe") != NULL) ||
+         (strstr(tag, "awb_state") != NULL) ||
+         (strstr(tag, "paramctrl_attributes") != NULL) ||
+         (strstr(tag, "LensMCU") != NULL) ||
+         (strstr(tag, "GraphicBuffer") != NULL) ||
+         (strstr(tag, "MALI") != NULL) ||
+         (strstr(tag, "GED") != NULL) ||
+         (strstr(tag, "SocketClient") != NULL) ||
+	       (strstr(tag, "BT3") != NULL)) {
+             return 0;
+     }
     /* XXX: This needs to go! */
     if ((bufID != LOG_ID_RADIO) &&
          (!strcmp(tag, "HTC_RIL") ||
