@@ -1,5 +1,7 @@
  extern "C" {
-     
+   
+   void _ZN7android18BufferItemConsumer13releaseBufferERKNS_10BufferItemERKNS_2spINS_5FenceEEE(){
+   }
    void _ZN7android8String165setToEPKDsj(char16_t const*, unsigned int);
 
     void _ZN7android8String165setToEPKtj(unsigned short const* str, unsigned int len){
