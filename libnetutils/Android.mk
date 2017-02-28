@@ -15,6 +15,13 @@ LOCAL_MODULE := libnetutils
 
 LOCAL_CFLAGS := -Werror
 
+ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
+LOCAL_CFLAGS += -DMTK_HARDWARE -Wno-unused-parameter
+endif
+
+$(info TARGET_GLOBAL_CFLAGS: $(TARGET_GLOBAL_CFLAGS))
+$(info LOCAL_CFLAGS: $(LOCAL_CFLAGS))
+
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
